@@ -4,10 +4,13 @@ services:
     restart: always
     ports:
       - "8862:8862"
+      - "80:80"
     volumes:
       - ./conf_nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./conf_nginx/frontend_img:/usr/share/nginx/frontend_img:ro
     depends_on:
       - backend
+      - frontend
 
   pgdb:
     image: postgres
@@ -30,8 +33,8 @@ services:
       context: ./booking-system
       dockerfile: dockerfile_backend
     restart: "always"
-    stdin_open: true
-    tty: true
+    stdin_open: true  # 保持標準輸入打開，允許容器內部接受交互。
+    tty: true  # 分配一個虛擬終端給容器，使得它可以進行交互式操作。
     env_file:
       - .env
     environment:
@@ -39,3 +42,11 @@ services:
       - POST=8850
     depends_on:
       - pgdb
+
+  frontend:
+    build:
+      context: ./booking-system
+      dockerfile: dockerfile_frontend
+    restart: "always"
+    stdin_open: true
+    tty: true

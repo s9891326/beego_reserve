@@ -1,11 +1,12 @@
 import logo from './logo.svg';
-import Calendar from './Calendar';
+import Calendar from './calendar/Calendar';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
     <Calendar />
+    <span>123456</span>
     <h1>預約日曆</h1>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />

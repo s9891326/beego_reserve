@@ -1,0 +1,6 @@
+FROM golang:1.24.0-alpine
+WORKDIR /main
+COPY backend .
+RUN go build -o main .
+RUN mv main /bin
+ENTRYPOINT main

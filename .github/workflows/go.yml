@@ -14,15 +14,38 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - name: Check code
+      uses: actions/checkout@v4
 
-    - name: Set up Go
-      uses: actions/setup-go@v4
+    - name: Google Cloud Auth
+      uses: 'google-github-actions/auth@v2'
       with:
-        go-version: '1.20'
+        credentials_json: '${{ secrets.GCP_SA_KEY }}'
+        project_id: ${{ env.PROJECT_ID }}
 
-    - name: Build
-      run: go build -v ./...
+    - name: Setup SSH Key
+      run: |
+        echo "${{ secrets.GCP_SSH_KEY }}" > gcp_key
+        chmod 600 gcp_key
+        
+    - name: Deploy via SSH
+      run: |
+        ssh -o StrictHostKeyChecking=no -i gcp_key ${{ secrets.GCP_VM_USER }}@${{ secrets.GCP_VM_IP }} << 'EOF'
+          cd /data
+          ls -la
+        EOF
 
-    - name: Test
-      run: go test -v ./...
+#          git pull origin main
+#          docker-compose down
+#          docker-compose pull
+#          docker-compose up -d --build
+
+#    - name: Set up Go
+#      uses: actions/setup-go@v4
+#      with:
+#        go-version: '1.20'
+#    - name: Build
+#      run: go build -v ./...
+#
+#    - name: Test
+#      run: go test -v ./...

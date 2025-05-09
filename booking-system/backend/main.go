@@ -19,7 +19,8 @@ func main() {
 
 func autoMigrate() {
 	err := dbutil.DB.AutoMigrate(
-		&models.Reservation{},
+		&models.User{},
+		&models.Booking{},
 	)
 
 	if err != nil {

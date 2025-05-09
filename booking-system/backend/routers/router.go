@@ -7,5 +7,5 @@ import (
 
 func init() {
 	beego.Router("/", &controllers.MainController{})
-	beego.Router("/reservations", &controllers.ReservationController{}, "get:GetAll")
+	beego.Router("/booking", &controllers.BookingController{}, "get:GetAll")
 }

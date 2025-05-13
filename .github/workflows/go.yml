@@ -27,12 +27,19 @@ jobs:
       run: |
         echo "${{ secrets.GCP_SSH_KEY }}" > gcp_key
         chmod 600 gcp_key
+        echo "hello world"
+        echo gcp_key
         
     - name: Deploy via SSH
       run: |
         ssh -o StrictHostKeyChecking=no -i gcp_key ${{ secrets.GCP_VM_USER }}@${{ secrets.GCP_VM_IP }} << 'EOF'
-          cd /data
-          ls -la
+          cd /data/beego_reserve &&
+          ls -la &&
+          git pull origin master &&
+          docker compose build &&
+          docker-compose up -d &&
+          docker-compose restart nginx &&
+          docker system prune -f
         EOF
 
 #          git pull origin main

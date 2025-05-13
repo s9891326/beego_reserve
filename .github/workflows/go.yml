@@ -35,6 +35,7 @@ jobs:
         ssh -o StrictHostKeyChecking=no -i gcp_key ${{ secrets.GCP_VM_USER }}@${{ secrets.GCP_VM_IP }} << 'EOF'
           cd /data/beego_reserve &&
           ls -la &&
+          git config --global --add safe.directory /data/beego_reserve &&
           git pull origin master &&
           docker compose build &&
           docker-compose up -d &&

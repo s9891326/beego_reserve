@@ -58,5 +58,7 @@ sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin d
 # 啟動 Docker 並開機自動啟動
 sudo systemctl start docker
 sudo systemctl enable docker
-
 ```
+
+1. 創建完VM後需要設定Compute Engine -> 中繼資料 -> 安全殼層金鑰，在這裡面增加對應的public key
+    - 這邊設定的安全殼層金鑰會有對應的key，就是拿來ssh登入到VM的帳號

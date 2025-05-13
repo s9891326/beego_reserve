@@ -38,8 +38,8 @@ jobs:
           git config --global --add safe.directory /data/beego_reserve &&
           git pull origin master &&
           docker compose build &&
-          docker-compose up -d &&
-          docker-compose restart nginx &&
+          docker compose up -d &&
+          docker compose restart nginx &&
           docker system prune -f
         EOF
 

@@ -62,3 +62,16 @@ sudo systemctl enable docker
 
 1. 創建完VM後需要設定Compute Engine -> 中繼資料 -> 安全殼層金鑰，在這裡面增加對應的public key
     - 這邊設定的安全殼層金鑰會有對應的key，就是拿來ssh登入到VM的帳號
+2. 把github-cd用戶加入到VM上的用戶群組內
+```
+# 查 palworld1100 所屬群組
+id palworld1100
+
+# 將 github-cd 加入該群組
+sudo usermod -aG palworld1100 github-cd
+
+# 修改目錄群組與權限
+sudo chgrp -R palworld1100 /data/beego_reserve
+sudo chmod -R g+rw /data/beego_reserve
+sudo chmod g+s /data/beego_reserve
+```

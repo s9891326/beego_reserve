@@ -13,6 +13,8 @@ func main() {
 	dbutil.DB = dbutil.DB.Debug()
 	autoMigrate()
 
+	//beego.InsertFilter("*", beego.BeforeRouter, filters.AllowCORS)
+
 	beego.BConfig.WebConfig.ViewsPath = config.Conf.ViewsPath
 	beego.Run(config.Conf.ReceiverHost + ":" + config.Conf.Port)
 }

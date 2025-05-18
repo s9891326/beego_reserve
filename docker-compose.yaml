@@ -39,7 +39,7 @@ services:
       - .env
     environment:
       - RECEIVER_HOST=0.0.0.0
-      - POST=8850
+      - PORT=8850
     depends_on:
       - pgdb
 
@@ -47,6 +47,8 @@ services:
     build:
       context: ./booking-system
       dockerfile: dockerfile_frontend
+      args:
+        VITE_API_DOMAIN: "http://127.0.0.1:8862"
     restart: "always"
     stdin_open: true
     tty: true

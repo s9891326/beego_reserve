@@ -1,10 +1,14 @@
-FROM node:18
+FROM node:20
 WORKDIR /main
 
 COPY frontend/package*.json .
 RUN npm install --legacy-peer-deps
 
 COPY frontend .
+
+ARG VITE_API_DOMAIN
+ENV VITE_API_DOMAIN=$VITE_API_DOMAIN
+
 RUN npm run build
 
 EXPOSE 3000

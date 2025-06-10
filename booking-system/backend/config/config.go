@@ -15,6 +15,12 @@ type Config struct {
 
 var Conf *Config
 
+var BookingTags = map[int8]string{
+	1: "睫毛",
+	2: "指甲",
+	3: "頭髮",
+}
+
 func init() {
 	Conf = &Config{
 		DBHost:       getEnv("DB_HOST", "127.0.0.1"),

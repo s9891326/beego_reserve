@@ -4,7 +4,11 @@ go 1.24
 
 require github.com/beego/beego/v2 v2.1.0
 
-require github.com/smartystreets/goconvey v1.6.4
+require (
+	github.com/lib/pq v1.10.5
+	github.com/smartystreets/goconvey v1.6.4
+	gorm.io/gorm v1.26.0
+)
 
 require (
 	github.com/beorn7/perks v1.0.1 // indirect
@@ -36,5 +40,4 @@ require (
 	google.golang.org/protobuf v1.30.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	gorm.io/driver/postgres v1.5.11 // indirect
-	gorm.io/gorm v1.26.0 // indirect
 )

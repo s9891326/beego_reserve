@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"booking-system/config"
 	"booking-system/dbutil"
 	"booking-system/models"
 	"booking-system/utils"
@@ -11,6 +12,13 @@ import (
 
 type BookingController struct {
 	web.Controller
+}
+
+// GetBookingTags @router /booking/tags
+func (c *BookingController) GetBookingTags() {
+	c.Data["json"] = config.BookingTags
+	_ = c.ServeJSON()
+
 }
 
 // GetAll @router /booking/list [get]
@@ -53,7 +61,17 @@ func (c *BookingController) GetAll() {
 	_ = c.ServeJSON()
 }
 
-// Add @router /booking/add [post]
+/*
+Add @router /booking/add [post]
+
+	{
+		"user_id": 1,
+		"desc": "desc",
+		"start_at": "2025-06-09T11:00:00+08:00",
+		"end_at": "2025-06-09T12:30:00+08:00",
+		"tags": [ 1 ]
+	}
+*/
 func (c *BookingController) Add() {
 	var booking models.Booking
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &booking); err != nil {

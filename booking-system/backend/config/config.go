@@ -3,14 +3,15 @@ package config
 import "os"
 
 type Config struct {
-	DBHost       string
-	DBPort       string
-	DBUser       string
-	DBPass       string
-	DBName       string
-	ReceiverHost string
-	Port         string
-	ViewsPath    string
+	DBHost         string
+	DBPort         string
+	DBUser         string
+	DBPass         string
+	DBName         string
+	ReceiverHost   string
+	Port           string
+	ViewsPath      string
+	GoogleClientId string
 }
 
 var Conf *Config
@@ -23,14 +24,15 @@ var BookingTags = map[int8]string{
 
 func init() {
 	Conf = &Config{
-		DBHost:       getEnv("DB_HOST", "127.0.0.1"),
-		DBPort:       getEnv("DB_PORT", "5432"),
-		DBUser:       getEnv("DB_USER", "pgroot"),
-		DBPass:       getEnv("DB_PASS", "pg_root"),
-		DBName:       getEnv("DB_NAME", "booking"),
-		ReceiverHost: getEnv("RECEIVER_HOST", "0.0.0.0"),
-		Port:         getEnv("PORT", "8850"),
-		ViewsPath:    getEnv("VIEWS_PATH", "views"),
+		DBHost:         getEnv("DB_HOST", "127.0.0.1"),
+		DBPort:         getEnv("DB_PORT", "5432"),
+		DBUser:         getEnv("DB_USER", "pgroot"),
+		DBPass:         getEnv("DB_PASS", "pg_root"),
+		DBName:         getEnv("DB_NAME", "booking"),
+		ReceiverHost:   getEnv("RECEIVER_HOST", "0.0.0.0"),
+		Port:           getEnv("PORT", "8850"),
+		ViewsPath:      getEnv("VIEWS_PATH", "views"),
+		GoogleClientId: getEnv("GOOGLE_CLIENT_ID", ""),
 	}
 }
 

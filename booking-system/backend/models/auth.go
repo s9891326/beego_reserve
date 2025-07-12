@@ -16,6 +16,7 @@ type CustomGormModel struct {
 
 // User 會員
 type User struct {
-	gorm.Model
 	CustomGormModel
+	Name  string `gorm:"type:varchar(255);default:null;comment:name" json:"name"`
+	Email string `gorm:"type:varchar(255);not null;comment:email" json:"email"`
 }
